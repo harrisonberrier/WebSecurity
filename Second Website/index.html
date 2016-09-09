@@ -239,10 +239,10 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap JavaScript -->
+    <!-- Bootstrap JS -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!--JavaScript -->
+    <!--JS -->
     <script>
     // closes sidebar
     $("#menu-close").click(function(e) {
@@ -272,8 +272,37 @@
             }
         });
     });
-    </script>
+    
 
+        var message="No inspecting our element!";
+
+        function click(){
+            if (event.button==2){
+                alert(message);
+                return false;
+            }
+        }
+
+        function clickb(e){
+            if (document.layers||document.getElementById&&!document.all){
+                if (e.which==2||e.which==3){
+                    alert(message);
+                    return false;
+                }
+            }
+        }
+
+        if (document.layers){
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown=clickb;
+        }
+        else if (document.all&&!document.getElementById){
+            document.onmousedown=click;
+        }
+
+        document.oncontextmenu=new Function("alert(message);return false")
+    
+    </script>    
 </body>
 
 </html>
